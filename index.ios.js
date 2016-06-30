@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet } from 'react-native';
 import { Todo } from './src/app/Todo';
+import { Fancy } from './src/app/Fancy';
 
-class Main extends Component {
-  render() {
-    return (
-      <Todo />
-    );
-  }
-}
+const Main = () => (<Todo />);
 
 const styles = StyleSheet.create({
   container: {
