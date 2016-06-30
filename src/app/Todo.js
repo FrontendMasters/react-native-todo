@@ -17,13 +17,36 @@ export class Todo extends Component {
     }
   }
   
+  componentWillMount() {
+    fetch('http://192.168.1.174:5000/todos', {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(todos => this.setState({todos}))
+  }
+  
   handleChange(text) {
     this.setState({newTodo: text});
   }
   
   handlePress() {
-    const todos = [...this.state.todos, this.state.newTodo];
-    this.setState({todos, newTodo: ''});
+    fetch('http://192.168.1.174:5000/todos', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: this.state.newTodo
+      })
+    })
+    .then(res => res.json())
+    .then(todo => {
+      const todos = [todo,...this.state.todos];
+      this.setState({todos, newTodo: ''})
+    })
   }
   
   render() {
@@ -45,7 +68,7 @@ export class Todo extends Component {
         <View style={styles.todos}>
           {this.state.todos.map((todo, i) => (
             <View key={i} style={styles.todo}>
-              <Text style={styles.todoText} >{todo}</Text>
+              <Text style={styles.todoText} >{todo.name}</Text>
             </View>
           ))}
         </View>

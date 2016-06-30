@@ -4,10 +4,8 @@ import {
   Text,
   Dimensions
 } from 'react-native';
+
 import { styles } from './styles';
-
-
-
 export class Fancy extends Component {
   render() {
     return(
