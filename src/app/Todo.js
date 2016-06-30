@@ -18,7 +18,7 @@ export class Todo extends Component {
   }
   
   componentWillMount() {
-    fetch('http://localhost:5000/todos', {
+    fetch('http://localhost:3000/todos', {
       headers: {
         'Accept': 'application/json'
       }
@@ -33,11 +33,10 @@ export class Todo extends Component {
   
   handlePress() {
     const newtodo = {
-      id: (new Date().getTime()),
       name: this.state.newTodo
     };
 
-    fetch('http://localhost:5000/todos/', {
+    fetch('http://localhost:3000/todos/', {
       method: 'post',
       headers: {
         'Accept': 'application/json',

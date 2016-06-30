@@ -7,7 +7,7 @@ $ npm start
 
 Terminal 2
 
-`$ json-server db.json -p 5000`
+`$ json-server db.json`
 
 Terminal 3
 

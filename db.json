@@ -1,16 +1,16 @@
 {
   "todos": [
     {
-      "id": 1467318987683,
-      "name": "Drink Protein"
+      "name": "Drink Protein",
+      "id": 1
     },
     {
-      "id": 1467318993996,
-      "name": "Eat Breakfast"
+      "name": "Eat Breakfast",
+      "id": 2
     },
     {
-      "id": 1467318999323,
-      "name": "Drink Coffee"
+      "name": "Drink Coffee",
+      "id": 3
     }
   ]
 }
