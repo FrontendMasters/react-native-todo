@@ -4,7 +4,7 @@ import { Todo } from './src/app/Todo';
 import { Fancy } from './src/app/Fancy';
 import { Reddit } from './src/app/Reddit';
 
-const Main = () => (<Reddit />);
+const Main = () => (<Todo />);
 
 const styles = StyleSheet.create({
   container: {

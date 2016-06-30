@@ -1,5 +1,16 @@
 {
   "todos": [
-    { "name": "take out trash"}
+    {
+      "id": 1467318987683,
+      "name": "Drink Protein"
+    },
+    {
+      "id": 1467318993996,
+      "name": "Eat Breakfast"
+    },
+    {
+      "id": 1467318999323,
+      "name": "Drink Coffee"
+    }
   ]
 }

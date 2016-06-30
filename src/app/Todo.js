@@ -18,7 +18,7 @@ export class Todo extends Component {
   }
   
   componentWillMount() {
-    fetch('http://192.168.1.174:5000/todos', {
+    fetch('http://localhost:5000/todos', {
       headers: {
         'Accept': 'application/json'
       }
@@ -32,21 +32,24 @@ export class Todo extends Component {
   }
   
   handlePress() {
-    fetch('http://192.168.1.174:5000/todos', {
-      method: 'POST',
+    const newtodo = {
+      id: (new Date().getTime()),
+      name: this.state.newTodo
+    };
+
+    fetch('http://localhost:5000/todos/', {
+      method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        name: this.state.newTodo
-      })
+      body: JSON.stringify(newtodo)
     })
-    .then(res => res.json())
-    .then(todo => {
-      const todos = [todo,...this.state.todos];
+    .then(data => data.json())
+    .then(json => {
+      const todos = [...this.state.todos, newtodo];
       this.setState({todos, newTodo: ''})
-    })
+    });
   }
   
   render() {
