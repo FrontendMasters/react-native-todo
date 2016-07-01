@@ -4,15 +4,18 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  Switch
+  StyleSheet
 } from 'react-native';
+import { TodoForm } from './TodoForm';
+import { connect } from 'react-redux';
 
-export class Todo extends Component {
+export class _Todo extends Component {
+  static defaultProps = {
+    todos: []
+  }
   constructor() {
     super();
     this.state = {
-      todos: [],
       newTodo: ''
     }
   }
@@ -22,28 +25,20 @@ export class Todo extends Component {
   }
   
   handlePress() {
-    const todos = [...this.state.todos, this.state.newTodo];
-    this.setState({todos, newTodo: ''});
+    this.props.createTodo(this.state.newTodo);
+    this.setState({newTodo: ''});
   }
   
   render() {
     return (
       <View style={styles.container}>
-        <Switch />
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            value={this.state.newTodo}
-            onChangeText={this.handleChange.bind(this)}
-          />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={this.handlePress.bind(this)}>
-            <Text style={styles.buttonText}>make</Text>
-          </TouchableOpacity>
-        </View>
+        <TodoForm
+          handlePress={this.handlePress.bind(this)}
+          handleChange={this.handleChange.bind(this)}
+          value={this.state.newTodo}
+        />
         <View style={styles.todos}>
-          {this.state.todos.map((todo, i) => (
+          {this.props.todos.map((todo, i) => (
             <View key={i} style={styles.todo}>
               <Text style={styles.todoText} >{todo}</Text>
             </View>
@@ -53,6 +48,18 @@ export class Todo extends Component {
     )
   }
 }
+
+const mapActionsToProps = (dispatch) => ({
+  createTodo(todo) {
+    dispatch({type: 'CREATE_TODO' , payload: todo})
+  }
+});
+
+const mapStateToProps = (state) => ({
+  todos: state.todos
+})
+
+export const Todo = connect(mapStateToProps, mapActionsToProps)(_Todo);
 
 const styles = StyleSheet.create({
   container: {
